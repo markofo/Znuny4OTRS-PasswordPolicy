@@ -216,6 +216,14 @@ sub Run {
 # ---
 # Znuny4OTRS-PasswordPolicy
 # ---
+
+    # check if current and new passwords are not equal
+    if ( $Pw eq $CurPw ) {
+        $Self->{Error}
+            = "Can\'t update password, this password has already been used. Please choose a new one!";
+        return;
+    }
+
     my $MainObject = $Kernel::OM->Get('Kernel::System::Main');
 
     # md5 sum for new pw, needed for password history
